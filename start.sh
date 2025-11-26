@@ -3,8 +3,8 @@ set -e
 set -x  # Enable debug mode to print every command
 
 # update and install curl
-apt-get update
-apt-get install -y curl
+sudo apt-get update
+sudo apt-get install -y curl
 
 # Install nvm and node
 export NVM_DIR="$HOME/.nvm"
@@ -15,8 +15,8 @@ fi
 . "$NVM_DIR/nvm.sh"
 
 # Install and use LTS version
-nvm install --lts
-nvm use --lts
+nvm install v22.21.1
+nvm use v22.21.1
 
 # Navigate to frontend
 cd frontend
@@ -27,7 +27,7 @@ echo "Applying fix for Node.js IPv6 networking issues..."
 echo "------------------------------------------------"
 
 # FIX: Force npm to use IPv4 to prevent hanging on DNS lookups
-npm config set dns-result-order=ipv4first
+echo "node-options=--dns-result-order=ipv4first" >> ~/.npmrc
 
 # Install dependencies with verbose logging to track progress
 npm install --verbose
