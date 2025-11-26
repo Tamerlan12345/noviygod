@@ -2,6 +2,10 @@
 set -e
 set -x  # Enable debug mode to print every command
 
+# update and install curl
+apt-get update
+apt-get install -y curl
+
 # Install nvm and node
 export NVM_DIR="$HOME/.nvm"
 if [ ! -s "$NVM_DIR/nvm.sh" ]; then
